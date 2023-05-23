@@ -1,0 +1,88 @@
+En Jp Quiz App
+
+Table of Content
+-Specs
+-GUI Design
+-Issues/Decisions
+
+------------------------------------------------------------
+
+Specs
+
+    Platform - Android
+    Language - Kotlin
+    Version - API 19 
+
+Started 5/22/23
+
+------------------------------------------------------------
+
+GUI Design
+
+-START Title Segment List Page
+___________________________
+|                         |
+|        En Jp Quiz       | Label - Title
+|       All Segments      | Label - Page Name
+| ______________________  |  
+| |      1 Hiragana     | | Scroll Area
+| |      2 Katakana     | | 
+| |      3 ~~~~~~~      | | Buttons - Segment Name & #                              START Title Segment List Page
+| |      4 ~~~~~~~      | |                                                                     ^
+| |_____________________| |                                                                     |
+|           Exit          | Button - to Exit                                                    |
+|_________________________|                                                                     |
+                                                                                                V
+-Segment Options Page                                                                   Segment Options Page
+___________________________                                                             ^     ^  ^  ^      ^
+|                         |                                                   __________| ____|  |  |____  |___________ 
+|        En Jp Quiz       | Label - Title                                     |           |      |      |             |  
+|     Segment Name & #    | Label - Segment Detail                            V           V      |      V             V
+|                         |                                                 Vocab     Sentence   V     Seg Quiz    All Quiz  
+|          Vocab          | Button - to Vocab                                                Vocab Quiz
+|         sentences       | Button - to sentences
+|       Vocab Quiz        | Button - to Vocab Quiz
+|       Segment Quiz      | Button - to Segment Quiz
+|         All Quiz        | Button - to All Quiz
+|                         |
+|            Back         | Button - to All Segments
+|_________________________|
+
+
+-vocab/sentence page
+___________________________
+|                         |
+|        En Jp Quiz       | Label - Title
+|     Segment Name & #    | Label - Segment Detail
+|         Page Type       | Label - Page Type (vocab sentence)
+|                         |
+| _______________________ |  
+| |____|_____|_____|____| | Scroll Area
+| |    |     |     |    | | SQL Table 
+| |    |     |     |    | | Buttons - Segment Name & #
+| |    |     |     |    | |
+| |____|_____|_____|____| |
+|           Back          | Button - to Segment Option
+|_________________________|
+
+
+-quiz/all quiz page
+___________________________
+|                         |
+|        En Jp Quiz       | Label - Title
+|           Quiz          | Label - Page Type
+|                         |
+|       To Translate      | Label - To Translate Text
+|       -------------     | 
+|       |___________|     | Text Area - User input
+|           Check         | Button - to Check User Input
+|                         |
+|            Back         | Button - to Segments Options
+|_________________________|
+
+------------------------------------------------------------
+
+Issues/Decisions
+
+
+------------------------------------------------------------
