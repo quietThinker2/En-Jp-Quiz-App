@@ -4,6 +4,7 @@ Table of Content
 -Specs
 -GUI Design
 -Issues/Decisions
+-Comments
 
 ------------------------------------------------------------
 
@@ -84,5 +85,22 @@ ___________________________
 
 Issues/Decisions
 
+Issues
+    -Will returning to the Start activity cause the Segment buttons ids to increment?  (force()) 5-24-23
+    -What color theme should I use? 5-24-23
+    -how does it look on a tablet?  5-24-23
+
+Decisions
 
 ------------------------------------------------------------
+Comments
+
+    5/24/23
+        The Start/Main page(Activity) is nearly complete. Database is intact and easily replaceable.
+        An issue I seem to have is changing the look of the Segment buttons but I'll save that for later
+        when the app only needs some color. A more worrying issue is if the Segment buttons will 
+        be added into the button container multiple times if returned to Start/main page. Feeling good
+        about the project so far. Much testing to do.
+        
+        
+--------------------------------------------------------------
