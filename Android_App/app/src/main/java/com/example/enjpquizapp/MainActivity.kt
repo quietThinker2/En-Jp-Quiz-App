@@ -1,5 +1,6 @@
 package com.example.enjpquizapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val dbHelper = SQLiteHelper(this)
-        val data = dbHelper.getAData()
+        val data = dbHelper.getSegNumberNameData()
 
         createButtonsFromDataBase(data)
 
@@ -62,8 +63,17 @@ class MainActivity : AppCompatActivity() {
             button.setOnClickListener{
                 val clickedButtonId = it.id
                 println("Clicked Button ID: $clickedButtonId")
-            }
+                println(button.id)
 
+
+                val segmentID = button.id
+                val segmentTitle = button.text
+                val intent = Intent(this,SegmentActivity::class.java)
+                intent.putExtra("segmentID",segmentID)
+                intent.putExtra("segmentTitle",segmentTitle)
+
+                startActivity(intent)
+            }
 
             // Add the buttons to the button container
             val layoutParams = LinearLayout.LayoutParams(

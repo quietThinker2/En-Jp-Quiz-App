@@ -1,5 +1,6 @@
 package com.example.enjpquizapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -9,7 +10,7 @@ import java.io.IOException
 
 
 class SQLiteHelper(private val context: Context) :
-SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
+SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
         private const val DATABASE_NAME = "EN-JB-DB.db"
@@ -53,7 +54,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
         // Database upgrade logic if needed
     }
 
-    fun getAData(): String {
+    fun getSegNumberNameData(): String {
         val db = readableDatabase
         val projection = arrayOf("segmentNumber", "segmentName")
         val cursor = db.query("DATA", projection, null, null, null, null, null)
@@ -64,8 +65,8 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
             val segmentName = cursor.getString(cursor.getColumnIndexOrThrow("segmentName"))
 
             val concatValue = "$segmentNumber - $segmentName"
-            if (segmentNumber.isNotEmpty()){
-                if (!stringBuilder.contains(concatValue)){
+            if (segmentNumber.isNotEmpty()) {
+                if (!stringBuilder.contains(concatValue)) {
 
                     stringBuilder.append(concatValue).append("\n")
                 }
@@ -77,4 +78,34 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
         cursor.close()
         return stringBuilder.toString()
     }
+
+    @SuppressLint("Range")
+    fun getSegNameFromNumber(number: Int): String {
+        val columnName = "segmentName"
+        val tableName = "DATA"
+        val columnNumber = "segmentNumber"
+        val desiredNumber = number
+
+
+        val db = readableDatabase
+        val cursor = db.query(
+            tableName,
+            arrayOf(columnName),
+            "$columnNumber = ?",
+            arrayOf(desiredNumber.toString()),
+            null,
+            null,
+            null
+        )
+        var retrievedName = ""
+        if (cursor.moveToFirst()) {
+            retrievedName = cursor.getString(cursor.getColumnIndex(columnName))
+
+        }
+
+        return retrievedName
+
+
+    }
+
 }
