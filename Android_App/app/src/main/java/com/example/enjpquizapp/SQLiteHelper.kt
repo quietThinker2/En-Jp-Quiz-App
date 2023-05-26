@@ -108,4 +108,31 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     }
 
+    @SuppressLint("Range")
+    fun getSentenceOrVocab(typeValue: String, segmentNumberValue: Int): List<TableItem> {
+        val db = readableDatabase
+
+        val projection = arrayOf("japanese", "english", "romaji")
+        val selection = "type = ? AND segmentNumber = ?"
+        val selectionArgs = arrayOf(typeValue,segmentNumberValue.toString())
+
+        val cursor = db.query("DATA", projection, selection, selectionArgs, null, null, null)
+
+        val items = mutableListOf<TableItem>()
+
+        while (cursor.moveToNext()) {
+            val c1 = cursor.getString(cursor.getColumnIndexOrThrow("japanese"))
+            val c2 = cursor.getString(cursor.getColumnIndexOrThrow("english"))
+            val c3 = cursor.getString(cursor.getColumnIndexOrThrow("romaji"))
+
+            val item = TableItem(c1, c2, c3)
+            items.add(item)
+        }
+
+        cursor.close()
+        db.close()
+
+        return items
+    }
+
 }

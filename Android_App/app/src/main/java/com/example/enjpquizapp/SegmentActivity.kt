@@ -1,5 +1,6 @@
 package com.example.enjpquizapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -32,8 +33,11 @@ class SegmentActivity : AppCompatActivity() {
 
         val btnVocab: Button = findViewById(R.id.btnVocab)
         btnVocab.setOnClickListener{
-            finish()
-            //exitProcess(1)
+            val intent = Intent(this,VocabActivity::class.java)
+            intent.putExtra("segmentID",segmentID)
+            //intent.putExtra("segmentTitle",segmentTitle)
+
+            startActivity(intent)
         }
         val btnSent: Button = findViewById(R.id.btnSent)
         btnSent.setOnClickListener{

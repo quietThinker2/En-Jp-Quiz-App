@@ -88,6 +88,8 @@ Issues/Decisions
 Issues
     -What color theme should I use? 5-24-23
     -how does it look on a tablet?  5-24-23
+    -Changing orientation brings back the ids being incremented 5-25-23
+    -Changing orientation causes the widgets to be strangely displaced 5-25-23
 
 Decisions
     -Will returning to the Start activity cause the Segment buttons ids to increment?  (force()) 5-24-23
@@ -108,4 +110,18 @@ Comments
         link them with the buttons. I was able to transfer data between Activities easily. I am curious 
         if i should use a button container or vertical Linear layout. One of each is used so far. I'm 
         tired but excited to continue this app. The real development starts soon.
+
+    5/25/23 Early
+        Plotting
+        I haven't incorporated the third (Vocabulary) Activity/page yet. I'm wondering how I should go about 
+        adding a data model. Could I create one model for both Vocab and sentences?
+        Get japanese, english, romaji -> Where type and segment 
+
+    5/25/23 6pm
+        Success! I have the Vocabulary displaying on all Segments except for 1 and 2. Using the same model I 
+        will easily be able to implement the Sentence Activity. I will have to create a new data model since
+        these don't contain a romaji value. Did find new issues unfortunately. Multiple issues come forth when
+        the orientation changes. Should i just remove being able to change orientations? Would likely be the 
+        easiest solution. I'll worry about that at the end when I am finishing the UI. On another note I believe
+        I'll make a commit now just in case. 
 --------------------------------------------------------------
