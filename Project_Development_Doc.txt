@@ -132,8 +132,14 @@ Comments
         looked at. I did go ahead and hid buttons that should not show for the first two segments. Already started some 
         development on the quiz functionality. It looks to be the big piece to that Activities functionality.
 
-    5/27/23
+    5/27/23 3pm
         The Quiz Activities for Vocabulary and Sentences is up. Comparing values works fine for all segments. I am realizing
         the lack of inline documentation. I always slug that at the end. Only issues I can see coming from these Activities
         is the formatting of the to-translate text view. None of the Sentence display long enough to be sure. 
-        --------------------------------------------------------------
+
+    5/27/23 5pm
+        The All Together Quiz Activity is running. Had a issue with the first two segments giving a translation that
+        could be from either segment. That concludes implementing the underlining functionality. The remaining steps will be formatting, 
+        applying a theme, documenting, and cleaning up.
+
+--------------------------------------------------------------

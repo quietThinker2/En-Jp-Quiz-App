@@ -75,7 +75,8 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
         }
 
-        cursor.close()
+        cursor?.close()
+        db.close()
         return stringBuilder.toString()
     }
 
@@ -103,6 +104,8 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
         }
 
+        cursor?.close()
+        db.close()
         return retrievedName
 
 
@@ -183,8 +186,46 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
             values.add(english)
             values.add(romaji)
         }
+        cursor?.close()
+        db.close()
         return values
 
+    }
+
+    @SuppressLint("Range")
+    fun extractAllPrevious(segmentNumberValue: Int): ArrayList<String> {
+
+        val db = readableDatabase
+
+        val givenValue = segmentNumberValue
+
+        val projection = arrayOf("japanese", "english", "romaji") // Replace with your actual column names
+        val selection = "segmentNumber <= ?"
+        val selectionArgs = arrayOf(givenValue.toString())
+        val sortOrder = "RANDOM()"
+        val limit = "1"
+
+        val cursor = db.query("DATA", projection, selection, selectionArgs, null, null, sortOrder, limit)
+
+        val values = arrayListOf<String>()
+// Retrieve the data from the cursor if a row is found
+        if (cursor != null && cursor.moveToFirst()) {
+            val japanese = cursor.getString(cursor.getColumnIndex("japanese"))
+            val english = cursor.getString(cursor.getColumnIndex("english"))
+            var romaji = cursor.getString(cursor.getColumnIndex("romaji"))
+
+            if (romaji == null) {
+                romaji = ""
+            }
+
+            values.add(japanese)
+            values.add(english)
+            values.add(romaji)
+            // Process the retrieved data as needed
+        }
+        cursor?.close()
+        db.close()
+        return values
     }
 }
 

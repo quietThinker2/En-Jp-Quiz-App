@@ -67,13 +67,19 @@ class SegmentActivity : AppCompatActivity() {
         }
         val btnAllQuiz: Button = findViewById(R.id.btnAllQuiz)
         btnAllQuiz.setOnClickListener{
-            finish()
-            //exitProcess(1)
+            val intent = Intent(this,AllQuizActivity::class.java)
+            intent.putExtra("segmentID",segmentID)
+
+            startActivity(intent)
+
         }
 
         if ((segmentID == 1) or (segmentID == 2)){
             btnSent.visibility = View.GONE
             btnSentQuiz.visibility = View.GONE
+        }
+        if (segmentID == 1){
+            btnAllQuiz.visibility = View.GONE
         }
     }
 }
