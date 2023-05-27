@@ -3,6 +3,7 @@ package com.example.enjpquizapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
@@ -17,12 +18,12 @@ class SegmentActivity : AppCompatActivity() {
         val dbHelper = SQLiteHelper(this)
         val data = dbHelper.getSegNameFromNumber(segmentID)
 
-        val testTitle = segmentID.toString() + "\n" +   data
+        val title = segmentID.toString() + "\n" +   data
 
 
 
         val textTitle: TextView = findViewById(R.id.textTitle)
-        textTitle.text = testTitle
+        textTitle.text = title
 
         val btnMain: Button = findViewById(R.id.btnMain)
         btnMain.setOnClickListener{
@@ -41,23 +42,33 @@ class SegmentActivity : AppCompatActivity() {
         }
         val btnSent: Button = findViewById(R.id.btnSent)
         btnSent.setOnClickListener{
-            finish()
-            //exitProcess(1)
+            val intent = Intent(this,SentenceActivity::class.java)
+            intent.putExtra("segmentID",segmentID)
+
+            startActivity(intent)
         }
         val btnVocabQuiz: Button = findViewById(R.id.btnVocabQuiz)
         btnVocabQuiz.setOnClickListener{
-            finish()
+            var values = dbHelper.extractVocab("V",segmentID)
+            println(values[1])
+
+        //finish()
             //exitProcess(1)
         }
         val btnSentQuiz: Button = findViewById(R.id.btnSentQuiz)
         btnSentQuiz.setOnClickListener{
-            finish()
-            //exitProcess(1)
+            var values = dbHelper.extractVocab("S",segmentID)
+            println(values[1])
         }
         val btnAllQuiz: Button = findViewById(R.id.btnAllQuiz)
         btnAllQuiz.setOnClickListener{
             finish()
             //exitProcess(1)
+        }
+
+        if ((segmentID == 1) or (segmentID == 2)){
+            btnSent.visibility = View.GONE
+            btnSentQuiz.visibility = View.GONE
         }
     }
 }

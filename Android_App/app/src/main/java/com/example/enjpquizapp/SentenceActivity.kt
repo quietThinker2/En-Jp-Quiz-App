@@ -7,14 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class VocabActivity : AppCompatActivity() {
+class SentenceActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TableAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_vocab)
+        setContentView(R.layout.activity_sentence)
 
         val segmentID = intent.getIntExtra("segmentID",0)
 
@@ -32,7 +32,7 @@ class VocabActivity : AppCompatActivity() {
 
 
         // Call the fetchDataFromDatabase function from MyDataModel
-        var typeValue = "V"
+        var typeValue = "S"
         val numberValue = segmentID
 
         val dataList = dbHelper.getSentenceOrVocab(typeValue,numberValue)
@@ -49,4 +49,5 @@ class VocabActivity : AppCompatActivity() {
 
 
     }
+
 }

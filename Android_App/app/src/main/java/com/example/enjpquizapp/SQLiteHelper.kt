@@ -113,8 +113,13 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
         val db = readableDatabase
 
         val projection = arrayOf("japanese", "english", "romaji")
-        val selection = "type = ? AND segmentNumber = ?"
-        val selectionArgs = arrayOf(typeValue,segmentNumberValue.toString())
+        val selection = "(type IS NULL OR type = ?) AND segmentNumber = ?"
+        val selectionArgs = if ((segmentNumberValue == 1) or (segmentNumberValue == 2)){
+            arrayOf("",segmentNumberValue.toString())
+        } else {
+            arrayOf(typeValue,segmentNumberValue.toString())
+
+        }
 
         val cursor = db.query("DATA", projection, selection, selectionArgs, null, null, null)
 
@@ -123,7 +128,10 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
         while (cursor.moveToNext()) {
             val c1 = cursor.getString(cursor.getColumnIndexOrThrow("japanese"))
             val c2 = cursor.getString(cursor.getColumnIndexOrThrow("english"))
-            val c3 = cursor.getString(cursor.getColumnIndexOrThrow("romaji"))
+            var c3 = cursor.getString(cursor.getColumnIndexOrThrow("romaji"))
+            if (c3 == null) {
+                c3 = ""
+            }
 
             val item = TableItem(c1, c2, c3)
             items.add(item)
@@ -135,4 +143,55 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
         return items
     }
 
+
+    @SuppressLint("Range")
+    fun extractVocab(typeValue: String, segmentNumberValue: Int): ArrayList<String> {
+        //grab a sentence
+        //open data base
+        //query for rows where segment is correct
+        //get a count
+        //get a random number between this numbers
+
+
+        val db = readableDatabase
+
+        val selection = "(type IS NULL OR type = ?) AND segmentNumber = ?"
+        val selectionArgs = if ((segmentNumberValue == 1) or (segmentNumberValue == 2)) {
+            arrayOf("", segmentNumberValue.toString())
+        } else {
+            arrayOf(typeValue, segmentNumberValue.toString())
+        }
+        val orderBy = "RANDOM()"
+        val limit = "1"
+
+        val cursor = db.query(
+            "DATA",
+            null,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            orderBy,
+            limit
+        )
+
+//        var english = ""
+//        var japanese = ""
+//        var romaji = ""
+        val values = arrayListOf<String>()
+        if (cursor.moveToFirst()) {
+            val english = cursor.getString(cursor.getColumnIndex("english"))
+            val japanese = cursor.getString(cursor.getColumnIndex("japanese"))
+            var romaji = cursor.getString(cursor.getColumnIndex("romaji"))
+            if (romaji == null) {
+                romaji = ""
+            }
+            values.add(japanese)
+            values.add(english)
+            values.add(romaji)
+        }
+        return values
+
+    }
 }
+

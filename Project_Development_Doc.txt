@@ -86,10 +86,11 @@ ___________________________
 Issues/Decisions
 
 Issues
-    -What color theme should I use? 5-24-23
+    -What color theme should I use?(Skin?) 5-24-23
     -how does it look on a tablet?  5-24-23
-    -Changing orientation brings back the ids being incremented 5-25-23
-    -Changing orientation causes the widgets to be strangely displaced 5-25-23
+    -Changing orientation brings back the ids being incremented. 5-25-23
+    -Changing orientation causes the widgets to be strangely displaced. 5-25-23
+    -Vocab for the Segments 1&2 have too much blank space for column 3. 5-26-23
 
 Decisions
     -Will returning to the Start activity cause the Segment buttons ids to increment?  (force()) 5-24-23
@@ -124,4 +125,10 @@ Comments
         the orientation changes. Should i just remove being able to change orientations? Would likely be the 
         easiest solution. I'll worry about that at the end when I am finishing the UI. On another note I believe
         I'll make a commit now just in case. 
+
+    5/26/23 9pm
+        The Sentence and Vocabulary Activities are up and displaying. Had some issues getting the first two segments
+        showing due to a column value being null. Figured it out! Did notice issues on formatting that will need to be
+        looked at. I did go ahead and hid buttons that should not show for the first two segments. Already started some 
+        development on the quiz functionality. It looks to be the big piece to that Activities functionality.
 --------------------------------------------------------------
