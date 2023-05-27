@@ -145,14 +145,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
 
     @SuppressLint("Range")
-    fun extractVocab(typeValue: String, segmentNumberValue: Int): ArrayList<String> {
-        //grab a sentence
-        //open data base
-        //query for rows where segment is correct
-        //get a count
-        //get a random number between this numbers
-
-
+    fun extractVocabOrSentence(typeValue: String, segmentNumberValue: Int): ArrayList<String> {
         val db = readableDatabase
 
         val selection = "(type IS NULL OR type = ?) AND segmentNumber = ?"

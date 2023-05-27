@@ -131,4 +131,9 @@ Comments
         showing due to a column value being null. Figured it out! Did notice issues on formatting that will need to be
         looked at. I did go ahead and hid buttons that should not show for the first two segments. Already started some 
         development on the quiz functionality. It looks to be the big piece to that Activities functionality.
---------------------------------------------------------------
+
+    5/27/23
+        The Quiz Activities for Vocabulary and Sentences is up. Comparing values works fine for all segments. I am realizing
+        the lack of inline documentation. I always slug that at the end. Only issues I can see coming from these Activities
+        is the formatting of the to-translate text view. None of the Sentence display long enough to be sure. 
+        --------------------------------------------------------------

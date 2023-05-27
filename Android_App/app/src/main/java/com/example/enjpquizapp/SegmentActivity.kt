@@ -49,16 +49,21 @@ class SegmentActivity : AppCompatActivity() {
         }
         val btnVocabQuiz: Button = findViewById(R.id.btnVocabQuiz)
         btnVocabQuiz.setOnClickListener{
-            var values = dbHelper.extractVocab("V",segmentID)
-            println(values[1])
+            val intent = Intent(this,VocabQuizActivity::class.java)
+            intent.putExtra("segmentID",segmentID)
+
+            startActivity(intent)
 
         //finish()
             //exitProcess(1)
         }
         val btnSentQuiz: Button = findViewById(R.id.btnSentQuiz)
         btnSentQuiz.setOnClickListener{
-            var values = dbHelper.extractVocab("S",segmentID)
-            println(values[1])
+            val intent = Intent(this,SentenceQuizActivity::class.java)
+            intent.putExtra("segmentID",segmentID)
+
+            startActivity(intent)
+
         }
         val btnAllQuiz: Button = findViewById(R.id.btnAllQuiz)
         btnAllQuiz.setOnClickListener{
