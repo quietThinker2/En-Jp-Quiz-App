@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">En-Jp Quiz</string>
+    <string name="to_segment_options">To Segment Options</string>
+    <string name="check_answer">Check Answer</string>
+    <string name="vocabulary_quiz">Vocabulary Quiz</string>
+    <string name="translate">Translate:</string>
+    <string name="click_here_to_type">Click Here To Type</string>
+    <string name="en_jp_quiz">En-Jp Quiz</string>
+    <string name="dash">-</string>
+    <string name="all_segments">All Segments</string>
+    <string name="exit">Exit</string>
+    <string name="segment_options">Segment Options</string>
+    <string name="to_all_segments">To All Segments</string>
+    <string name="vocabulary">Vocabulary</string>
+    <string name="sentences">Sentences</string>
+    <string name="sentences_quiz">Sentences Quiz</string>
+    <string name="all_together_quiz">All Together Quiz</string>
+    <string name="results">Results</string>
+    <string name="japanese">Japanese</string>
+    <string name="english">English</string>
+    <string name="romaji">Romaji</string>
 </resources>

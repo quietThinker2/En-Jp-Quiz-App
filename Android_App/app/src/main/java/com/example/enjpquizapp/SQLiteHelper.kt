@@ -23,7 +23,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
         copyDatabaseFromAssets(context)
     }
 
-    //load database
+    //Setup - load database
     private fun copyDatabaseFromAssets(context: Context) {
         val dbFile = File(dbPath)
         if (!dbFile.exists()) {
@@ -36,7 +36,6 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
                 while (inputStream.read(buffer).also { length = it } > 0) {
                     outputStream.write(buffer, 0, length)
                 }
-
                 outputStream.flush()
                 outputStream.close()
                 inputStream.close()
@@ -47,13 +46,12 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        // Database creation logic if needed
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        // Database upgrade logic if needed
     }
 
+    //Return a Formatted String of each Segment Number and Name
     fun getSegNumberNameData(): String {
         val db = readableDatabase
         val projection = arrayOf("segmentNumber", "segmentName")
@@ -71,29 +69,25 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
                     stringBuilder.append(concatValue).append("\n")
                 }
             }
-
-
         }
-
         cursor?.close()
         db.close()
         return stringBuilder.toString()
     }
 
+    //Get the Segment Name from the Given Number
     @SuppressLint("Range")
     fun getSegNameFromNumber(number: Int): String {
         val columnName = "segmentName"
         val tableName = "DATA"
         val columnNumber = "segmentNumber"
-        val desiredNumber = number
-
 
         val db = readableDatabase
         val cursor = db.query(
             tableName,
             arrayOf(columnName),
             "$columnNumber = ?",
-            arrayOf(desiredNumber.toString()),
+            arrayOf(number.toString()),
             null,
             null,
             null
@@ -103,14 +97,12 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
             retrievedName = cursor.getString(cursor.getColumnIndex(columnName))
 
         }
-
         cursor?.close()
         db.close()
         return retrievedName
-
-
     }
 
+    //Get a list of the wanted Vocab or Sentences
     @SuppressLint("Range")
     fun getSentenceOrVocab(typeValue: String, segmentNumberValue: Int): List<TableItem> {
         val db = readableDatabase
@@ -123,7 +115,6 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
             arrayOf(typeValue,segmentNumberValue.toString())
 
         }
-
         val cursor = db.query("DATA", projection, selection, selectionArgs, null, null, null)
 
         val items = mutableListOf<TableItem>()
@@ -135,11 +126,9 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
             if (c3 == null) {
                 c3 = ""
             }
-
             val item = TableItem(c1, c2, c3)
             items.add(item)
         }
-
         cursor.close()
         db.close()
 
@@ -147,6 +136,7 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     }
 
 
+    //Get a Random Segment Sentence or Vocab -> extract the values -> and return them in a ArrayList
     @SuppressLint("Range")
     fun extractVocabOrSentence(typeValue: String, segmentNumberValue: Int): ArrayList<String> {
         val db = readableDatabase
@@ -170,10 +160,6 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
             orderBy,
             limit
         )
-
-//        var english = ""
-//        var japanese = ""
-//        var romaji = ""
         val values = arrayListOf<String>()
         if (cursor.moveToFirst()) {
             val english = cursor.getString(cursor.getColumnIndex("english"))
@@ -189,19 +175,16 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
         cursor?.close()
         db.close()
         return values
-
     }
 
+    //Get a random row from all the Segments up to the given Segment Number
     @SuppressLint("Range")
     fun extractAllPrevious(segmentNumberValue: Int): ArrayList<String> {
-
         val db = readableDatabase
-
-        val givenValue = segmentNumberValue
 
         val projection = arrayOf("japanese", "english", "romaji") // Replace with your actual column names
         val selection = "segmentNumber <= ?"
-        val selectionArgs = arrayOf(givenValue.toString())
+        val selectionArgs = arrayOf(segmentNumberValue.toString())
         val sortOrder = "RANDOM()"
         val limit = "1"
 
@@ -217,11 +200,9 @@ SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
             if (romaji == null) {
                 romaji = ""
             }
-
             values.add(japanese)
             values.add(english)
             values.add(romaji)
-            // Process the retrieved data as needed
         }
         cursor?.close()
         db.close()

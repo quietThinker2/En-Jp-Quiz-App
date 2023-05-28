@@ -8,7 +8,7 @@
         android:id="@+id/textViewResults"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Results"
+        android:text="@string/results"
         android:textSize="18sp"
         android:textColor="@android:color/black"
         android:layout_marginBottom="8dp"/>
@@ -17,21 +17,21 @@
         android:id="@+id/textViewJapanese"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Japanese"
+        android:text="@string/japanese"
         android:textSize="18sp"
         android:textColor="@android:color/black"/>
     <TextView
         android:id="@+id/textViewEnglish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="English"
+        android:text="@string/english"
         android:textSize="18sp"
         android:textColor="@android:color/black"/>
     <TextView
         android:id="@+id/textViewRomaji"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Romaji"
+        android:text="@string/romaji"
         android:textSize="18sp"
         android:textColor="@android:color/black"/>
 

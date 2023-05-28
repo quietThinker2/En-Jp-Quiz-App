@@ -28,7 +28,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Segment Options"
+        android:text="@string/segment_options"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         android:id="@+id/btnMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To All Segments"
+        android:text="@string/to_all_segments"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:text="Vocabulary"
+            android:text="@string/vocabulary"
             android:textSize="30sp" />
 
         <Button
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:text="Sentences"
+            android:text="@string/sentences"
             android:textSize="30sp" />
 
         <Button
@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:text="Vocabulary Quiz"
+            android:text="@string/vocabulary_quiz"
             android:textSize="30sp" />
 
         <Button
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:text="Sentences Quiz"
+            android:text="@string/sentences_quiz"
             android:textSize="30sp" />
 
 
@@ -95,7 +95,7 @@
             android:id="@+id/btnAllQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="All Together Quiz"
+            android:text="@string/all_together_quiz"
             android:textSize="30sp" />
     </LinearLayout>
 

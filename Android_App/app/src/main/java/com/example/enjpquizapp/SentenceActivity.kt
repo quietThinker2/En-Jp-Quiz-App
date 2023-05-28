@@ -16,38 +16,28 @@ class SentenceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sentence)
 
+        //Set title
         val segmentID = intent.getIntExtra("segmentID",0)
-
         val dbHelper = SQLiteHelper(this)
-
-
         val data = dbHelper.getSegNameFromNumber(segmentID)
-
         val title = segmentID.toString() + "\n" +   data
-
         val textTitle: TextView = findViewById(R.id.textTitle)
         textTitle.text = title
+
+        // Retrieve the correct data
+        val typeValue = "S"
+        val dataList = dbHelper.getSentenceOrVocab(typeValue, segmentID)
+
+        //bind the data from an adapter and display it in a recycle view
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-
-        // Call the fetchDataFromDatabase function from MyDataModel
-        var typeValue = "S"
-        val numberValue = segmentID
-
-        val dataList = dbHelper.getSentenceOrVocab(typeValue,numberValue)
-
         adapter = TableAdapter(dataList)
         recyclerView.adapter = adapter
 
-
-
+        //button to go back to Segment Options
         val btnSegment: Button = findViewById(R.id.btnSegment)
         btnSegment.setOnClickListener{
             finish()
         }
-
-
     }
-
 }

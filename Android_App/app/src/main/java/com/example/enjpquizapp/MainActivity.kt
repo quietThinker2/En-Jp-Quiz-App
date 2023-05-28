@@ -15,21 +15,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Button to end the application
         val btnExit: Button = findViewById(R.id.btnExit)
         btnExit.setOnClickListener{
-            //finish()
             exitProcess(1)
         }
 
+        //Open the database and collect each Segment Name and Number
         val dbHelper = SQLiteHelper(this)
         val data = dbHelper.getSegNumberNameData()
 
+        //Get Names and Numbers formatted into a buttons
         createButtonsFromDataBase(data)
 
         dbHelper.close()
-
     }
 
+    //Create a button for each Name and Number
     private fun createButtonsFromDataBase(data: String) {
         val buttonContainer: LinearLayout = findViewById(R.id.buttonContainer)
 
@@ -43,42 +45,30 @@ class MainActivity : AppCompatActivity() {
             val button = Button(this)
             button.text = value
 
-            // Set any other properties or listeners for the button as needed
-
             //set button id
             val generatedId = View.generateViewId()
             button.id = generatedId
-
 
             //set button text size
             val textSizePx = resources.getDimensionPixelSize(R.dimen.button_text_size)
             button.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSizePx.toFloat())
 
-
-            //action on clicked
+            //Move to a new Activity when a button is clicked
             button.setOnClickListener{
-                val clickedButtonId = it.id
-                println("Clicked Button ID: $clickedButtonId")
-                println(button.id)
-
-
                 val segmentID = button.id
-                val segmentTitle = button.text
                 val intent = Intent(this,SegmentActivity::class.java)
+
+                //pass the button Segment Number
                 intent.putExtra("segmentID",segmentID)
-                intent.putExtra("segmentTitle",segmentTitle)
 
                 startActivity(intent)
             }
-
             // Add the buttons to the button container
             val layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
-
             layoutParams.setMargins(0,0,0,16)
-
 
             buttonContainer.addView(button, layoutParams)
         }
