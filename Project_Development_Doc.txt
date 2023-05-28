@@ -4,7 +4,7 @@ Table of Content
 -Specs
 -GUI Design
 -Issues/Decisions
--Comments
+-Development Comments
 
 ------------------------------------------------------------
 
@@ -15,6 +15,8 @@ Specs
     Version - API 19 
 
 Started 5/22/23
+
+    Orientation - Portrait
 
 ------------------------------------------------------------
 
@@ -85,19 +87,22 @@ ___________________________
 
 Issues/Decisions
 
-Issues
-    -What color theme should I use?(Skin?) 5-24-23
-    -how does it look on a tablet?  5-24-23
-    -Changing orientation brings back the ids being incremented. 5-25-23
-    -Changing orientation causes the widgets to be strangely displaced. 5-25-23
-    -Vocab for the Segments 1&2 have too much blank space for column 3. 5-26-23
+    Issues
 
-Decisions
-    -Will returning to the Start activity cause the Segment buttons ids to increment?  (force()) 5-24-23
-        Answer: No issues have been noticed when using force()
-
+        -how does it look on a tablet?  5/24/23
+        -Vocab for the Segments 1&2 have too much blank space for column 3. 5/26/23
+        -Confirm Database data 5/28/23
+    Decisions
+        -Will returning to the Start activity cause the Segment buttons ids to increment?  (force()) 5/24/23
+            Answer: No issues have been noticed when using force()
+        -Changing orientation brings back the ids being incremented. 5/25/23
+            Answer: Applied permanent portrait mode 5/28/23
+        -Changing orientation causes the widgets to be strangely displaced. 5/25/23
+            Answer: Applied permanent portrait mode 5/28/23
+        -What color theme should I use?(Skin?) 5/24/23
+            Answer: Default theme 5/28/23
 ------------------------------------------------------------
-Comments
+Development Comments
 
     5/24/23 7am
         The Start/Main page(Activity) is nearly complete. Database is intact and easily replaceable.
@@ -142,4 +147,10 @@ Comments
         could be from either segment. That concludes implementing the underlining functionality. The remaining steps will be formatting, 
         applying a theme, documenting, and cleaning up.
 
+    5/28/23 11pm
+        Applied a (no) theme, permanent portrait orientation, and icons. I could spend hours trying to apply a colorful theme however
+        after applying a default theme I am satisfied especially if the device dark theme is enabled. A work around to the orientation issues 
+        (incrementing and widget displacement), the application will only display in portrait mode. Testing will need to be done but i can
+        see a few ways where this could/will be a problem. Icons have been placed. I do have one for the playstore but it isn't connected to this
+        project. -> Next focus is documenting and cleaning up the code <-
 --------------------------------------------------------------

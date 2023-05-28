@@ -7,7 +7,6 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.TextView
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
@@ -27,14 +26,11 @@ class MainActivity : AppCompatActivity() {
 
         createButtonsFromDataBase(data)
 
-        val textView: TextView = findViewById(R.id.textViewTest)
-        textView.text = data
-
         dbHelper.close()
 
     }
 
-    fun createButtonsFromDataBase(data: String) {
+    private fun createButtonsFromDataBase(data: String) {
         val buttonContainer: LinearLayout = findViewById(R.id.buttonContainer)
 
         val values = data.split("\n") // Split the data into individual values
